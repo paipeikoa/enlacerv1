@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class="container"><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Manuales</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Manuales</li>
+                </ol>
+            </nav>     
+        </div>		
+  	</div><br>
+	<div class="container-fluid">
+		<div class="row">
+	    	<div class="card col-lg-4">
+			    <img class="card-img-top" src="{% static 'imagenes/manual-aquasystem.jpg' %}" alt="Card image cap">
+			 	<div class="card-body text-center">
+				    <h3>ACQUASYSTEM<br><small>Manuales de uso</small></h3>
+				    <div class="panel-heading">        
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/Acqua_System_completo.pdf' %}"> Manual completo (8.7 MB)</a></h5>
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/Acqua_System.pdf' %}"> Manual reducido (4.9 MB)</a></h5>
+	        	    </div>
+			    </div>
+		  	</div>
+		  	<div class="card col-lg-4">
+			    <img class="card-img-top" src="{% static 'imagenes/manual-duratop.jpg' %}" alt="Duratop">
+			 	<div class="card-body text-center">
+				    <h3>DURATOP<br><small>Presentación y Catálogo</small></h3>
+				    <div class="panel-heading"><br>   
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/CATALOGO BLACK POWER3.pdf' %}"> Descargar (1.81 MB)</a></h5>		    	            
+	        	    </div>
+			    </div>
+		  	</div>
+		  	<div class="card col-lg-4">
+			    <img class="card-img-top" src="{% static 'imagenes/manual-sigas.jpg' %}" alt="Sigas">
+			 	<div class="card-body text-center">
+				    <h3>SIGAS<br><small>Manuales de uso</small></h3>
+				    <div class="panel-heading"><br>        
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/Sigas_Thermofusion.pdf' %}"> Manual completo (6.42 MB)</a></h5>
+	        	    </div>
+			    </div>
+		  	</div>
+		</div>
+		<div class="row">
+			<div class="card col-lg-4">
+			    <img class="card-img-top" src="{% static 'imagenes/manual-tubotherm.jpg' %}" alt="Tubotherm">
+			 	<div class="card-body text-center">
+				    <h3>TUBOTHERM<br><small>Manuales de uso</small></h3>
+				    <div class="panel-heading"><br>        
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/Tubotherm.pdf' %}"> Manual completo (2 MB)</a></h5>
+	        	    </div>
+			    </div>
+		  	</div>
+		  	<div class="card col-lg-4">
+			    <img class="card-img-top" src="{% static 'imagenes/manual-sistemas.jpg' %}" alt="Manual de sistemas">
+			 	<div class="card-body text-center">
+				    <h3>MANUAL DE SISTEMAS<br><small>Manuales de uso</small></h3>
+				    <div class="panel-heading"><br>   
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/Catalogo_de_Sistemas.pdf' %}"> Catálogo (6.4 MB)</a></h5>		    	            
+	        	    </div>
+			    </div>
+		  	</div>
+		  	<div class="card col-lg-4">
+			    <img class="card-img-top" src="{% static 'imagenes/manual-demafix.jpg' %}" alt="Manual demafix">
+			 	<div class="card-body text-center">
+				    <h3>MANUAL DE SISTEMAS<br><small>Manuales de uso</small></h3>
+				    <div class="panel-heading"><br>        
+	    	            <h5><i class="fa fa-fw fa-download"></i><a href="{% static 'archivos/demafix.pdf' %}"> Catálogo (860 Kb)</a></h5>
+	        	    </div>
+			    </div>
+		  	</div>
+		</div>
+	</div>
+</div>
+<br><br>
+{% endblock content %}

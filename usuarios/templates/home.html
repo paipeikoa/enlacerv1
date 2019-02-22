@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_head %}Inicio{% endblock title_head %}
+{% block content %}
+{% include 'header.html' %}
+<!-- Page Content -->
+<div class="container col-lg-10 col-lx-10">
+<!-- Marketing Icons Section -->
+    <h1 class="my-4">EMS - INSUMOS DE AGUA, GAS Y MÁS</h1>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header"><i class="fa fa-fw fa-shower"></i> AGUA - ACQUASYSTEM</h4>
+                <div class="card-body">
+                    <p class="card-text">El sistema líder para conducción de agua en Polipropileno Copolímero Random (tipo 3):
+                    <ul>
+                        <li>Unión por Thermofusión de máxima seguridad</li>
+                        <li>Superior resistencia a elevadas temperaturas y presiones</li>
+                        <li>Libre de sarro y corrosión</li>
+                        <li>Muy alta resistencia al impacto</li>
+                        <li>Gama completa de conexiones, accesorios y herramientas en medidas de 20 a 125 mm</li>
+                        <li>Tubos ACQUA LUMINIM, con alma de aluminio.</li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% static 'archivos/Acqua_System.pdf' %}" class="btn btn-info btn-block" >Más Información</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header"><i class="fa fa-fw fa-thermometer-half"></i> GAS - SIGAS</h4>
+                <div class="card-body">
+                    <p class="card-text"><strong>Triple seguridad en la conducción de gas</strong></p>
+                    <p>SIGAS Thermofusión es un sistema de conducción y distribución interna de gas natural y gases licuados de petróleo para viviendas, Industrias y todo tipo de edificios, producido en polietileno y acero, con unión por Thermofusión.</p>
+                    <p><strong>SIGAS THERMOFUSIÓN</strong> le suma a su marca impresa cuatro líneas, que facilitan su rápida identificación visual:
+                    En los caños, 4 líneas negras longitudinales, ubicadas a 90° entre sí.
+                    Y en las conexiones, 4 líneas paralelas contiguas, en cada pieza.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% static 'archivos/Sigas_Thermofusion.pdf' %}"  class="btn btn-info btn-block" >Más Información</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header"><i class="fa fa-fw fa-shower"></i> AGUA - IPS</h4>
+                <div class="card-body">
+                    <p class="card-text"><strong>SISTEMA IPS FUSIÓN:</strong>
+                    La manera más confiable de conducir agua fría y caliente. </p>
+                    La calidad del Sistema IPS Fusión está garantizada desde el primer momento, ya que para su fabricación utilizamos polipropileno copolímero RANDOM o Tipo III, con formulación de origen europeo.
+                    <p>Por su gran tenacidad, resulta ser el material más apto para la unión por fusión    molecular, otorgando alta resistencia a las distintas solicitaciones mecánicas.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% static 'archivos/Sigas_Thermofusion.pdf' %}"  class="btn btn-info btn-block" >Más Información</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+    <h2>ALGUNOS DE NUESTROS PRODUCTOS </h2><br>
+
+    <div class="row">
+    {% for prod in produ %}
+            <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
+                <div class="card text-center" style="width: 18rem;">
+                  <img class="card-img-top" src="{{ prod.imagenes.url }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{prod.categoria}}: {{prod.nombre}}</h5>
+                    <p class="card-text"><strong>Precio:</strong> ${{prod.precio}} {% if prod.categoria %}x 4 mts.{% endif %}| <strong>Stock actual:</strong> {{prod.stock}}</p>
+                    <a href="{% url 'productos:producto_detalle' prod.pk %}" class="btn btn-info btn-sm btn-block" role="button">Detalle del Producto</a>
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>        
+    <h2><small class="text-muted">Poder ver el inventario completo <a href="{% url 'productos:productos' %}">acá</a></small></h2><br>
+
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>EMS - DESAGÜES</h2>
+            <p>Modelos:</p>
+            <ul>
+                <li><strong>DURATOP X</strong></li>
+                <li><strong>DURATOP XR</strong></li>
+            </ul>
+            <p>El más alto rango de calidad en Desagües
+            Hace 25 años, GRUPO DEMA introdujo en Latinoamérica ACQUA SYSTEM. Y hace  15 años,  desarrolló SIGAS THERMOFUSIÓN.</p>
+            <p>
+            Con esa experiencia y capacidad técnica e industrial, Grupo Dema desarrolló la  LÍNEA X de DURATOP, con el respaldo y la garantía de la empresa de vanguardia en la conducción de fluidos.</p>
+        </div>
+        <div class="col-lg-6">
+            <img id="duratop" class="img-fluid rounded" src="{% static 'imagenes/duratop.jpg' %}" alt="">
+        </div>
+    </div>
+        <!-- /.row -->
+    <hr>
+
+        <!-- Call to Action Section -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <p>Si queres conocer más sobre AGUA, GAS y DESAGÜES. Podes ingresar al sitio de Grupo DEMA, donde encontraras un completo catalogo de productos.</p>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-lg btn-secondary btn-block" href="https://www.grupodema.com.ar">GRUPO DEMA</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

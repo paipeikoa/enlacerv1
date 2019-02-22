@@ -1,0 +1,62 @@
+{% load avatar_tags %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">EMS</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% url 'home' as home %}
+            {% url 'about' as about %}
+            {% url 'contact' as contact %}
+            {% url 'manuales' as manuales %}
+            {% url 'productos:productos' as productos %}
+            <li {% if request.path == home %} class="nav-item active"{% else %} class="nav-item"{% endif %}>
+                <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li {% if request.path == about %} class="nav-item active"{% else %} class="nav-item"{% endif %}>
+                <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
+            </li>
+            <li {% if request.path == contact %} class="nav-item active"{% else %} class="nav-item"{% endif %}>
+              <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
+            </li>
+            <li {% if request.path == manuales %} class="nav-item active"{% else %} class="nav-item"{% endif %}>
+              <a class="nav-link" href="{% url 'manuales' %}">Manuales</a>
+            </li>
+            <li {% if request.path == productos %} class="nav-item active"{% else %} class="nav-item"{% endif %}>
+                <a class="nav-link" href="{% url 'productos:productos' %}">Productos</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Páginas de Interes</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="http://www.sancarlos.gob.ar/">Municipalidad de San Carlos</a>
+                  <a class="dropdown-item" href="http://www.elcucodigital.com/">El Cuco Digital</a>
+                  <a class="dropdown-item" href="https://www.raddios.com/11840-radio-online-fm-vida-fm-995-la-consulta-argentina">Radio Municipal FM 99.5</a>
+                  <a class="dropdown-item" href="http://www.coince.com.ar/">COINCE</a>
+                  <a class="dropdown-item" href="http://www.mendoza.gov.ar">Tramites Mendoza</a>
+            </li>
+             {% if not request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}"> Registrarse</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+                {% else %}
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Inventario</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'productos:home_inventario' %}">Administración</a>
+                <a class="dropdown-item" href="{% url 'productos:listado_categorias' %}">Categorias</a>
+                <a class="dropdown-item" href="{% url 'productos:listado_productos' %}">Productos</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{user}}</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'account_change_password' %}"> Cambiar contraseña</a>
+                <a class="dropdown-item" href="{% url 'profile' %}"> Cuenta</a>
+                <a class="dropdown-item" href="{% url 'edit-profile' %}"> Editar mis datos</a>
+                <a class="dropdown-item" href="{% url 'account_logout' %}"> Salir</a>
+            </li>
+                  {% endif %}       
+          </ul>
+        </div>
+      </div>
+    </nav>

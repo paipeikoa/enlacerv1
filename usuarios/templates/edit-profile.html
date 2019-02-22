@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block content %}
+<br>
+<div class="container">
+<!-- Page Heading/Breadcrumbs -->
+  <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar cuenta</li>
+                </ol>
+            </nav> 
+        </div>
+    </div>
+</div>    
+<div class="container col-lg-4 col-md-6">
+  <div class="col-lg-12">
+    <h2 style="text-align:center">Editar mis datos</h2>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+    <br>
+    <button class="btn btn-success btn-lg btn-block" type="submit">{% trans "Registrar" %}</button><br>
+    <a href="{% url 'profile' %}" class="btn btn-danger btn-lg btn-block" role="button">Cancelar</a>
+    </form>
+
+    <br>
+  </div>
+
+</div>
+<br><br><br><br>
+{% endblock %}

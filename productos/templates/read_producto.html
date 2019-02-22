@@ -1,0 +1,64 @@
+{% load widget_tweaks %}
+
+<div class="modal-header" style="background-color: #337FB7; border-color:#2e6da4; color:#fff;">
+  <h4 class="modal-title">Detalle producto: {{object.nombre}}</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+	<div class="card text-center">
+		<div class="card-header">
+			<b>NOMBRE</b>
+		</div>
+		<div class="card-body">
+			{{object.nombre}}
+		</div>
+	</div><br>
+	<div class="card text-center">
+		<div class="card-header">
+			<b>CÓDIGO</b>
+		</div>
+		<div class="card-body">
+			{{object.codigo}}
+		</div>
+	</div><br>
+	<div class="card text-center">
+		<div class="card-header">
+			<b>MARCA</b>
+		</div>
+		<div class="card-body">
+			{{object.marca}}
+		</div>
+	</div><br>
+	<div class="card text-center">
+		<div class="card-header">
+			<b>PRECIO</b>
+		</div>
+		<div class="card-body">
+			{{object.precio}}{% if object.categoria %} x 4 mts.{% endif %}
+		</div>
+	</div><br>
+	<div class="card text-center">
+		<div class="card-header">
+			<b>STOCK DISPONIBLE</b>
+		</div>
+		<div class="card-body">
+			{{object.stock}}
+		</div>
+	</div><br>
+	<div class="card text-center">
+		<div class="card-header">
+			<b>IMAGEN</b>
+		</div>
+		<div class="card-body">
+			<a href="{{object.imagenes.url}}">{{object.imagenes}}</a>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-info" data-dismiss="modal">Imprimir</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+</div>

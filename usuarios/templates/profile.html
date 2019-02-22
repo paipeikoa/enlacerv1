@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load avatar_tags %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cuenta</li>
+                </ol>
+            </nav> 
+        </div>
+    </div>    
+	{% for message in messages %}
+		<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  	<span aria-hidden="true">&times;</span>
+			</button>		
+			{{ message }} 
+		</div>
+	{% endfor %}	
+    <h1 style="text-align:center">{% trans "Mi Perfil" %}</h1>
+  	<hr>
+<div class="container">  	
+	<div class="row">  
+		<!-- left column -->
+		 <div class="col-lg-3 mb-4">
+			<div class="text-center">
+				{% avatar user class="img-circle" %}
+			</div><br>
+			<div>
+				<a class="btn btn-primary btn-md btn-block" href="{% url 'avatar_change' %}" role="button">{% trans "Actualizar foto" %}</a>
+			</div>
+			<br>
+			<div class="panel panel-info">
+	            <div style="text-align:center" class="panel-heading"><b>Ajustes de cuenta</b></div>
+	            <ul class="list-group">
+					<a href="{% url 'edit-profile'%}" style="text-align:center" class="list-group-item">Actualizar mis datos</a>
+  					<a href="{% url 'productos:home_inventario' %}" style="text-align:center" class="list-group-item">Administración de Inventario</a>
+  					<a href="{% url 'account_change_password' %}" style="text-align:center" class="list-group-item">Cambiar contraseña</a>
+  					<a href="{% url 'account_email' %}" style="text-align:center" class="list-group-item">Editar correo electrónico</a>
+  					<a href="/" style="text-align:center" class="list-group-item">Volver al inicio</a>
+				</ul>
+	       	</div>
+		</div>     
+	    <div class="col-lg-9 mb-4">
+	       	<h3>Datos Personales</h3><br>
+	    	<div class="card text-center">
+			  <div class="card-header">
+			    <b>USUARIO</b>
+			  </div>
+			  <div class="card-body">
+			      {{user.username}}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>NOMBRE</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.first_name %}
+	            	{{user.first_name}} 
+	            {% else %}
+	            	No registra ningún nombre ingresado
+	            {% endif %}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>APELLIDO</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.last_name %}
+	            	{{user.last_name}} 
+	            {% else %}
+	            	No registra ningún nombre ingresado
+	            {% endif %}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>EMAIL</b>
+			  </div>
+			  <div class="card-body">
+			    <a href="mailto:{{user.email}}"><b>{{user.email}}</b></a>
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>TELÉFONO FIJO</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.userprofile.telefono_fijo %}
+	            	{{user.userprofile.telefono_fijo}}
+	            {% else %}
+	            	No registra ningún teléfono fijo ingresado
+	            {% endif%}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>TELÉFONO MÓVIL</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.userprofile.telefono_movil %}
+	            	{{user.userprofile.telefono_movil}}
+	            {% else %}
+	            	No registra ningún teléfono fijo móvil
+	            {% endif%}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>EDAD</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.userprofile.edad %}
+	            	{{user.userprofile.edad}}
+	            {% else %}
+	            	No registra edad ingresada
+	            {% endif%}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>FECHA DE NACIMIENTO</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.userprofile.fecha_nacimiento %}
+	            	{{user.userprofile.fecha_nacimiento}}
+	            {% else %}
+	            	No registra fecha de nacimiento ingresada
+	            {% endif%}
+			  </div>
+			</div><br>
+			<div class="card text-center">
+			  <div class="card-header">
+			    <b>DIRECCIÓN</b>
+			  </div>
+			  <div class="card-body">
+			    {% if user.userprofile.direccion %}
+	            	{{user.userprofile.direccion}}, {{user.userprofile.localidad}}, 
+	            	{% if user.userprofile.localidad_id == 17%}
+	            		{{user.userprofile.localidad.departamento.provincia}} 
+	           		{% else %}
+	           			{{user.userprofile.localidad.departamento}}, {{user.userprofile.localidad.departamento.provincia}} 
+	            	{% endif %}	
+	            {% else %}
+	            	No registra dirección ingresada
+	            {% endif %}
+			  </div>
+			</div><br>
+	    </div>
+	    </div>
+  	</div>
+</div>
+</div>
+<br><br>
+{% endblock %}

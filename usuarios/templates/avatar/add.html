@@ -1,0 +1,36 @@
+{% extends "avatar/base.html" %}
+{% load i18n avatar_tags %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'profile' %}">Cuenta</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar cuenta</li>
+
+                </ol>
+            </nav> 
+        </div>
+    </div>
+</div>
+<div class="container col-lg-4 col-md-6">
+    <div class="col-lg-12">
+        <h1 style="text-align:center">{% trans "Su avatar actual" %}</h1>
+    	<div style="text-align:center">{% avatar user class="img-circle"%}</div><br>
+	    {% if not avatars %}
+	        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+	    {% endif %}
+	    <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+	        {{ upload_avatar_form.as_p }}
+	        <p>{% csrf_token %}<input class="btn btn-block" type="submit" value="{% trans "Upload New Image" %}" /></p>
+	        <p><button class="btn btn-primary btn-md btn-block" type="submit" name="action_primary" value="{% trans "Upload New Image" %}">{% trans 'Make Primary' %}</button></p>
+			<p><a class="btn btn-danger btn-md btn-block" href="{% url 'profile'%}" role="button">{% trans "Cancelar" %}</a></p>       
+	    </form>
+	    <br><br><br><br>
+	</div>
+</div>
+{% endblock %}

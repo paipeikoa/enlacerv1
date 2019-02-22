@@ -1,0 +1,58 @@
+{% load widget_tweaks %}
+
+<form method="post" action="" enctype="multipart/form-data" novalidate>
+  {% csrf_token %}
+
+  <div class="modal-header" style="background-color: #337FB7; border-color:#2e6da4; color:#fff;">
+    <h3 class="modal-title">Nueva Categoría</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+
+{% for hidden_field in form.hidden_fields %}
+  {{ hidden_field }}
+{% endfor %}
+
+{% if form.non_field_errors %}
+  <div class="alert alert-danger" role="alert">
+    {% for error in form.non_field_errors %}
+      {{ error }}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% for field in form.visible_fields %}
+  <div class="form-group">
+    {{ field.label_tag }}
+
+    {% if form.is_bound %}
+      {% if field.errors %}
+        {% render_field field class="form-control is-invalid" placeholder=field.label %}
+        {% for error in field.errors %}
+          <div class="invalid">
+            {{ error }}
+          </div>
+        {% endfor %}
+      {% else %}
+        {% render_field field class="form-control is-valid" placeholder=field.label %}
+      {% endif %}
+    {% else %}
+      {% render_field field class="form-control" placeholder=field.label %}
+    {% endif %}
+
+    {% if field.help_text %}
+      <small class="form-text text-muted">{{ field.help_text }}</small>
+    {% endif %}
+  </div>
+{% endfor %}
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="submit-btn btn btn-primary">Crear</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+  </div>
+
+</form>

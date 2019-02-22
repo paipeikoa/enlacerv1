@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container col-lg-4 col-md-6">
+    <div class="col-lg-12">
+	<div class="modal-body">
+		<div class="card text-center">
+			<div class="card-header">
+				<b>NOMBRE</b>
+			</div>
+			<div class="card-body">
+				{{object.nombre}}
+			</div>
+		</div><br>
+		<div class="card text-center">
+			<div class="card-header">
+				<b>CÓDIGO</b>
+			</div>
+			<div class="card-body">
+				{{object.codigo}}
+			</div>
+		</div><br>
+		<div class="card text-center">
+			<div class="card-header">
+				<b>MARCA</b>
+			</div>
+			<div class="card-body">
+				{{object.marca}}
+			</div>
+		</div><br>
+		<div class="card text-center">
+			<div class="card-header">
+				<b>PRECIO</b>
+			</div>
+			<div class="card-body">
+				{{object.precio}} {% if object.categoria %} x 4 mts.{% endif %}
+			</div>
+		</div><br>
+		<div class="card text-center">
+			<div class="card-header">
+				<b>STOCK DISPONIBLE</b>
+			</div>
+			<div class="card-body">
+				{{object.stock}}
+			</div>
+		</div><br>
+		<div class="card text-center">
+			<div class="card-header">
+				<b>IMAGEN</b>
+			</div>
+			<div class="card style="width: 18rem;">
+				<img class="card-img-top" src="{{ producto.imagenes.url }}" alt="{{producto.nombre}}">
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+	  <button type="button" class="btn btn-info" data-dismiss="modal">Exportar PDF</button>
+	  <a class="btn btn-secondary" href="{% url 'productos:productos' %}" role="button">Cerrar</a>
+	</div>
+	</div>
+</div>
+{% endblock content %}

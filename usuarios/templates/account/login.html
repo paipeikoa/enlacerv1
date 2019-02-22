@@ -1,0 +1,32 @@
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+
+<br><br><br>
+<div class="container col-lg-4 col-md-6">
+    <div class="col-lg-12">
+        <h1 style="text-align:center">{% trans "Inicio de Sesión" %}</h1><br>
+
+        <div class="text-center">
+          <img id="login-image" src="{% static 'imagenes/login.jpg' %}" class="img-responsive img-circle" alt="Logo">
+        </div>
+
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button class="btn btn-success btn-md btn-block" type="submit">{% trans "Ingresar" %}</button>
+          <br>
+          <a class="btn btn-link button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Olvidaste tu clave" %}</a>| ¿No sos miembro? <a href="{{ signup_url }}">  Registrate</a>
+        </form>
+    </div>
+</div>
+<br><br><br><br>
+
+{% endblock %}

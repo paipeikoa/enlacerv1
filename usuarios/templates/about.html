@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title_head %}Nosotros{% endblock title_head %}
+{% load staticfiles %}
+{% block content %}
+<div class="container"><br>
+<!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Un poco de nosotros</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Nosotros</li>
+                </ol>
+            </nav> 
+        </div>
+    </div>
+
+    <!-- Intro Content -->
+    <div class="row">
+        <div class="col-lg-6">
+            <img class="img-fluid rounded mb-4" src="{% static 'imagenes/frente-negocio.jpg' %}" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>Nuestra historia</h2>
+            <p>Fundada en Enero del 2012, ENLACERV es una pequeña PYME que surgió del trabajo de una familia emprendedora. Ubicada en el centro de Eugenio Bustos. Es administrada por un padre de familia (Chicho Sarmiento).</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+    </div>
+    <!-- /.row -->
+    <h2>La Familia</h2><hr>
+    <!-- Team Members -->
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 text-center">
+                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Jorge "Chicho" Sarmiento</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Fundador y encargado</h6>
+                    <p class="card-text">Atiende el negocio la mayor parte del tiempo. Se encarga de casi todo</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Contactar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 text-center">
+                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Estela Sancho</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Fundador y encargado</h6>
+                    <p class="card-text">Es la esposa del Chicho atiende ocasionalmente el negocio.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Contactar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 text-center">
+                <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Diego y Carla Sarmiento</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Fundador y encargado</h6>
+                    <p class="card-text">Los hijos de la familia. Ocasionalmente atiende el negocio.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <h2>Alguno de nuestros clientes</h2><br>
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="{% static '/imagenes/municipalidad-sancarlos.png' %}" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="{% static '/imagenes/municipalidad-tupungato.png' %}" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="{% static '/imagenes/municipalidad-tunuyan.png' %}" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="{% static '/imagenes/atomo.jpg' %}" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="{% static '/imagenes/cata-logo.jpg' %}" alt="">
+        </div>
+        <div class="col-lg-2 col-sm-4 mb-4">
+            <img class="img-fluid" src="{% static '/imagenes/vea_cencosud.png' %}" alt="">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load widget_tweaks %}
+
+<form method="post" action="" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="modal-header" style="background-color: #EE1F1F; color:#fff;">
+    <h4 class="modal-title">Eliminar {{object.nombre}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p>¿Está seguro que de desea eliminar la categoria
+      {% if object.get_producto_count == 1 %}
+      <strong>{{ object.nombre }}</strong>?</p>
+      <p>También se eliminara el producto que tiene asociado.</p>
+      {% elif object.get_producto_count > 1 %}
+      <strong>{{ object.nombre }}</strong>?</p>
+      <p>También se eliminaran los <strong>{{object.get_producto_count}}</strong> productos asociados.</p>
+      {% else %}
+      <strong>{{object.nombre}}</strong> definitivamente ?
+    {% endif %} 
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  </div>
+
+</form>

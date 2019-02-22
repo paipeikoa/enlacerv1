@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container"><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Nuestros Productos</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Inventario de productos</li>
+                </ol>
+            </nav>
+        </div>
+    </div><br>
+    
+    <form method="get">
+    <div class="container">
+      <h4 style="margin-top: 0">Filtrar Producto</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.categoria.label_tag }}
+          {% render_field filter.form.categoria class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.codigo.label_tag }}
+          {% render_field filter.form.codigo class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.nombre.label_tag }}
+          {% render_field filter.form.nombre class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.marca.label_tag }}
+          {% render_field filter.form.marca class="form-control" %}
+        </div>        
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="fa fa-search" aria-hidden="true"></span> Buscar
+      </button>
+    </div>
+  </form><br>
+
+
+    <div class="container-fluid">
+        <div class="row">
+        {% for producto in productos %}
+            <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
+                <div class="card text-center" style="width: 18rem;">
+                  <img class="card-img-top" src="{{ producto.imagenes.url }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{producto.categoria}}: {{producto.nombre}}</h5>
+                    <p class="card-text"><strong>Precio:</strong> ${{producto.precio}} {% if producto.categoria_id == 1 %} x 4 mts.{% endif %} | <strong>Stock actual:</strong> {{producto.stock}}{% if producto.tipo_producto == 2 %} mts.{% elif producto.tipo_producto == 3 %} unidades. {% endif %}</p>
+                    {% if not request.user.is_authenticated %}
+                    <a href="{% url 'productos:producto_detalle' producto.pk %}" class="btn btn-info btn-sm btn-block" role="button">Detalle Producto</a>    
+                    {% else %}
+                    <button type="button" class="read-producto btn btn-sm btn-info" data-id="{% url 'productos:detalle_producto' producto.pk %}"><span class="fa fa-eye"></span> Detalle</button>    
+                    <button type="button" class="update-producto btn btn-sm btn-primary" data-id="{% url 'productos:modificar_producto' producto.pk %}"><span class="fa fa-pencil"></span> Actualizar</button>
+                    {% endif %}       
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div><br>
+
+        {% if is_paginated %}
+        <nav aria-label="Productos pagination" class="mb-4">
+          <ul class="pagination justify-content-center">
+            {% if page_obj.number > 1 %}
+              <li class="page-item">
+                <a class="page-link" href="?{{ request.GET.urlencode }}&page=1">Primera</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">Primera</span>
+              </li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">Anterior</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">Anterior</span>
+              </li>
+            {% endif %}
+
+            {% for page_num in paginator.page_range %}
+              {% if page_obj.number == page_num %}
+                <li class="page-item active">
+                  <span class="page-link">
+                    {{ page_num }}
+                    <span class="sr-only">(current)</span>
+                  </span>
+                </li>
+              {% elif page_num > page_obj.number|add:'-4' and page_num < page_obj.number|add:'4' %}
+                <li class="page-item">
+                  <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_num }}">{{ page_num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">Siguiente</span>
+              </li>
+            {% endif %}
+
+            {% if page_obj.number != paginator.num_pages %}
+              <li class="page-item">
+                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ paginator.num_pages }}">Última</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <span class="page-link">Última</span>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      {% endif %}
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+</div><br><br>
+{% endblock content %}

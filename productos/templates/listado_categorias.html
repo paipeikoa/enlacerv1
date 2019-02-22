@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="container"><br>
+  {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>   
+      {{ message }} 
+    </div>
+  {% endfor %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Categorías</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'productos:home_inventario' %}">Inventario</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Categorias</li>
+                </ol>
+            </nav>     
+        </div>    
+    </div><br>
+<div class="container-fluid">
+  <div class="row">
+          <div class="col-12 mb-3">
+            <button class="create-categoria btn btn-primary" type="button" name="button">
+              <span class="fa fa-plus mr-2"></span>Agregar Categoría</button>
+            <a class="btn btn-secondary" href="{% url 'productos:reporte_categorias' %}" role="button"><span class="fa fa-paper-plane" aria-hidden="true"></span> Exportar pdf</a>
+          </div>
+          
+          <div class="col-12 mb-3">
+              <table id="categoria-table" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                <thead class="alert-info">
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Creación</th>
+                    <th class="text-center">Actualización</th>
+                    <th class="text-center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for categoria in categorias %}
+                    <tr>
+                      <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                      <td class="text-center">{{ categoria.nombre }}</td>
+                      <td class="text-center">{{ categoria.descripcion }}</td>
+                      <td class="text-center">{{ categoria.fecha_creacion }}</td>
+                      <td class="text-center">{{ categoria.fecha_update }}</td>
+                      <td class="text-center">
+                        <button type="button" class="read-categoria btn btn-sm btn-info" data-id="{% url 'productos:detalle_categoria' categoria.pk %}">
+                          <span class="fa fa-eye"></span>
+                        </button>
+                        <button type="button" class="update-categoria btn btn-sm btn-primary" data-id="{% url 'productos:modificar_categoria' categoria.pk %}">
+                          <span class="fa fa-pencil"></span>
+                        </button>
+                        <button type="button" class="delete-categoria btn btn-sm btn-danger" data-id="{% url 'productos:eliminar_categoria' categoria.pk %}">
+                          <span class="fa fa-trash"></span>
+                        </button>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>            
+          </div>
+        </div>
+    </div>
+  </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div><br>
+{% endblock content%}

@@ -1,0 +1,49 @@
+
+.footer-top {
+    position: relative;
+    background-color: #3d3d3d;
+    color: #c5c5c5;
+    padding: 25px 0 25px;
+    border-top : 1px solid #696969;
+    border-bottom : 1px solid #696969;
+}
+
+.scrollup{
+    width:40px;
+    height:40px;
+    opacity:0.5;
+    position:fixed;
+    bottom:50px;
+    right:100px;
+    display:none;
+    text-indent:-9999px;
+    background: url('../imagenes/icon_top.png') no-repeat;
+}
+
+.tilde{
+    width: 140px;
+}
+
+/*.thumbnail {
+      padding: 0 0 15px 0;
+      background-color:lightgray;
+      border-radius: 0;
+}
+
+.thumbnail p {
+      margin-top: 15px;
+      color: #555;
+}*/
+#login-image{
+  border-radius: 100px;
+  width: 120px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+#imagenes{
+  width:350px;
+  height:200px;
+}
